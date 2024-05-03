@@ -51,8 +51,8 @@ RUN <<PKGS
   echo "alias python='python3'" >> ${HOME}/.bashrc
   echo "alias pip='pip3'" >> ${HOME}/.bashrc
   # Pipx can be installed via package in fedora
-  dnf -y install pipx poetry ansible
-  # python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
+  # dnf -y install pipx poetry ansible
+  python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
   # Remove the packer that comes with the base image in Cracklib.  It is just a symlink
   rm -f /usr/sbin/packer 
   # Install tfenv
@@ -77,9 +77,9 @@ echo "eval \"\$(direnv hook bash)\"" >> ${HOME}/.bashrc
 FSTAB
 RUN <<PIPXS
   # Install poetry
-  #pipx install poetry
+  pipx install poetry
   # Install ansible
-  #pipx install --include-deps ansible
+  pipx install --include-deps ansible
   # Install awscliv2 
   # (this does look a little weird, but it is correct)
   pipx install awscliv2 && awscliv2 --install && pipx uninstall awscliv2
