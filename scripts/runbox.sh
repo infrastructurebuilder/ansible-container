@@ -3,9 +3,13 @@ set -e
 VERSION=${IBAVERSION:-latest}
 CONTAINER=${IBACONTAINER:-infrastructurebuilder/ansible-container}:${VERSION}
 AWSCFG=${HOME}/.aws
-#IBVOLUME=""
+IBVOLUME=${IBVOLUME:-"${USER}-vol"}
+if [ "X${NOIBVOLMOUNT}" = "Xtrue" ]; then
+  unset IBVOLUME
+fi
 if [ "X${IBVOLUME}" != "X" ]; then
   if [ $(docker volume inspect ${IBVOLUME} 2>/dev/null | jq -r '.[0].Name') != "${IBVOLUME}" ]; then
+    echo "Creating volume ${IBVOLUME}"
     docker volume create ${IBVOLUME}
   fi
   IBVOLUMEMNT="-v ${IBVOLUME}:/root"
@@ -39,6 +43,6 @@ fi
 if [ "X${NOAWSMOUNT}" = "Xtrue" ]; then
   unset AWSMNT
 fi
-CMD="docker run --cap-add SYS_ADMIN --device /dev/fuse -it ${IBVOLUMEMNT} ${ENVMNT} ${AWSMNT} -v "$(pwd)":/work ${CONTAINER} $@ "
+CMD="docker run --cap-add SYS_ADMIN --device /dev/fuse -it ${IBVOLUMEMNT} ${ENVMNT} ${AWSMNT} -v \"$(pwd)\":/work ${CONTAINER} $@ "
 echo Running ${CMD}
 eval "${CMD}"
