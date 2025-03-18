@@ -24,7 +24,7 @@ There exists a Github action to deploy the container to Docker Hub upon a succes
 
 ## Contents
 
-The base is from Rocky 8.9.
+The base is from Fedora 41
 
 The tools that are explicitly included are:
 
