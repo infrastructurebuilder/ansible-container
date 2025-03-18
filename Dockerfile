@@ -1,7 +1,7 @@
-FROM fedora:40
+FROM fedora:41
 #FROM rockylinux:8.9
-ENV HOME "/root"
-ENV TFVERSION "1.8.1"
+ENV HOME="/root"
+ENV TFVERSION="1.8.1"
 
 # # See https://github.com/kahing/goofys/releases for goofys versions or just use "latest"
 # # ENV GOOFYSVERSION "v0.24.0"
@@ -13,14 +13,14 @@ ENV TFVERSION "1.8.1"
 ## "-1.6.2-1" will install version 1.6.2-1.  If you do not
 ## specify a version, the latest version will be installed.
 
-ENV OPENTOFUVERSION ""
+ENV OPENTOFUVERSION=""
 # ENV OPENTOFUVERSION "-1.6.2-1"
-ENV PACKERVERSION "" 
+ENV PACKERVERSION="" 
 # ENV PACKERVERSION "-1.10.3-1" 
-ENV S3FUSEVERSION ""
+ENV S3FUSEVERSION=""
 #ENV S3FUSEVERSION "-1.94"
 # --
-ENV PATH "${HOME}/.local/bin:${HOME}/.tfenv/bin:${HOME}/.awscliv2/binaries:${PATH}"
+ENV PATH="${HOME}/.local/bin:${HOME}/.tfenv/bin:${HOME}/.awscliv2/binaries:${PATH}"
 VOLUME /root
 COPY files/DOTenvrc /root/.envrc
 COPY files/opentofu.repo /etc/yum.repos.d/opentofu.repo
