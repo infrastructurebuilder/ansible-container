@@ -15,7 +15,7 @@ ENV TFVERSION="1.8.1"
 
 ENV OPENTOFUVERSION=""
 # ENV OPENTOFUVERSION "-1.6.2-1"
-ENV PACKERVERSION="1.12.0" 
+ENV PACKERVERSION="" 
 # ENV PACKERVERSION "-1.10.3-1" 
 ENV S3FUSEVERSION=""
 #ENV S3FUSEVERSION "-1.94"
@@ -33,7 +33,8 @@ RUN <<PKGS
   # dnf -y install git python39-devel which unzip findutils environment-modules dnf-plugins-core
   dnf -y install sudo awk git python-devel which unzip findutils environment-modules dnf-plugins-core wget direnv
   # dnf config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-  wget -O- https://rpm.releases.hashicorp.com/fedora/hashicorp.repo | sed -e s/\$releasever/39/ | sudo tee /etc/yum.repos.d/hashicorp.repo
+  # See https://www.hashicorp.com/en/blog/announcing-the-hashicorp-linux-repository
+  release=fedora && wget -O- https://rpm.releases.hashicorp.com/$release/hashicorp.repo | sudo tee /etc/yum.repos.d/hashicorp.repo
   # dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
   # dnf -y install  sudo patch autoconf automake bison bzip2 gcc-c++ libffi-devel libtool make patch sqlite-devel zlib-devel libffi-devel readline-devel openssl-devel glibc-headers glibc-devel
   #   dnf module reset ruby -y
