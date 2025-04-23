@@ -31,7 +31,7 @@ RUN <<PKGS
   dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && dnf -y update && dnf groupupdate -y core
   # dnf -y install epel-release && dnf -y update    # RHEL/Rocky only 
   # dnf -y install git python39-devel which unzip findutils environment-modules dnf-plugins-core
-  dnf -y install sudo git python-devel which unzip findutils environment-modules dnf-plugins-core wget direnv
+  dnf -y install sudo awk git python-devel which unzip findutils environment-modules dnf-plugins-core wget direnv
   # dnf config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
   wget -O- https://rpm.releases.hashicorp.com/fedora/hashicorp.repo | sed -e s/\$releasever/39/ | sudo tee /etc/yum.repos.d/hashicorp.repo
   # dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
