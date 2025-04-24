@@ -39,11 +39,15 @@ RUN <<PKGS
   # dnf -y install  sudo patch autoconf automake bison bzip2 gcc-c++ libffi-devel libtool make patch sqlite-devel zlib-devel libffi-devel readline-devel openssl-devel glibc-headers glibc-devel
   #   dnf module reset ruby -y
   #   dnf -y install @ruby:3.1
+  dnf -y install rubygems 
+  dnf -y install uv
+PKGS
+RUN <<PKGS2
 
   # Repo installed with `epel-release`
   # rubygems installs ruby 3.3.0 and bundler
   
-  dnf -y install direnv rubygems s3fs-fuse${S3FUSEVERSION} packer${PACKERVERSION} tofu${OPENTOFUVERSION} 
+  dnf -y install direnv s3fs-fuse${S3FUSEVERSION} packer${PACKERVERSION} tofu${OPENTOFUVERSION}
 
   echo "eval \"\$(direnv hook bash)\"" >> ${HOME}/.bashrc
   direnv allow /root
@@ -70,7 +74,7 @@ FSTABFILE
 exact = ["/root/.envrc"]
 prefix = [ "/work" ]
 DIRENVFILE
-PKGS
+PKGS2
 RUN <<PIPXS
   # Install poetry
   pipx install poetry
