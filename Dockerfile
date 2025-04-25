@@ -80,7 +80,7 @@ RUN <<PIPXS
   pipx install poetry
   # Install ansible
   pipx install --include-deps ansible
-  # Install awscliv2  (this does look a little weird, but it is correct)
+  # Install awscliv2  (this does look a little weird, but it is correct FOR THIS CONTAINER)
   pipx install awscliv2 && awscliv2 --install && pipx uninstall awscliv2
 PIPXS
 WORKDIR /root
