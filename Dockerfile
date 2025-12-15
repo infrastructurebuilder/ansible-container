@@ -1,4 +1,4 @@
-FROM fedora:42
+FROM fedora:43
 #FROM rockylinux:8.9
 ENV HOME="/root"
 ENV TFVERSION="1.8.1"
@@ -41,6 +41,7 @@ RUN <<PKGS
   #   dnf -y install @ruby:3.1
   dnf -y install rubygems 
   dnf -y install uv
+  dnf -y install just
 PKGS
 RUN <<PKGS2
 
